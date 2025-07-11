@@ -1,20 +1,23 @@
-import axios from 'axios'
-import React, { createContext, useEffect, useState } from 'react'
+import axios from "axios"
+import { createContext, useEffect, useState } from "react"
 
-let ApiData = createContext()
+
+let Apidata = createContext()
 const ContextApi = ({children}) => {
-    let[info, setInfo] = useState([])
-    let getData =()=>{
-        axios.get("https://dummyjson.com/products").then ((response)=>{
-            setInfo(response.data.products)
-        })
-    }
-    useEffect(()=>{
-        getData()
-    },[])
+let[info, setInfo] = useState([])
+let getData=()=>{
+  axios.get('https://dummyjson.com/products').then((response)=>{
+    setInfo(response.data.products)
+  })
+}
+useEffect(()=>{
+getData()
+},[])
+
+  
   return (
-    <ApiData.Provider value={info}>{children}</ApiData.Provider>
+    <Apidata.Provider value={info}>{children}</Apidata.Provider>
   )
 }
 
-export {ContextApi, ApiData}
+export {ContextApi, Apidata}
